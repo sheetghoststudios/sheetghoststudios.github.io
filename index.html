@@ -1272,13 +1272,32 @@
     const intro = document.getElementById("intro");
     const enterButton = document.getElementById("enterStudio");
 
-    if (sessionStorage.getItem("sheetGhostEntered") === "yes") {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    function resetPageToTop() {
+      if (window.location.hash) {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      }
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => window.scrollTo(0, 0));
+    }
+
+    function showStudioFromTop() {
+      resetPageToTop();
       intro.classList.add("hidden");
+    }
+
+    window.addEventListener("pageshow", resetPageToTop);
+
+    if (sessionStorage.getItem("sheetGhostEntered") === "yes") {
+      showStudioFromTop();
     }
 
     enterButton.addEventListener("click", () => {
       sessionStorage.setItem("sheetGhostEntered", "yes");
-      intro.classList.add("hidden");
+      showStudioFromTop();
     });
 
     const scenes = {
