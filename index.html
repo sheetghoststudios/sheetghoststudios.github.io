@@ -897,7 +897,8 @@
       .nav a.active::after { bottom: -5px; }
     }
 
-  </style>
+</style>
+  <link rel="stylesheet" href="timmytext.css">
 </head>
 
 <body>
@@ -920,6 +921,7 @@
     <nav class="nav" aria-label="Main navigation">
       <a href="#featured">Featured</a>
       <a href="#games">Games</a>
+      <a href="#timmytext">TimmyText</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#zen">Zen</a>
       <a href="#journal">Journal</a>
@@ -1080,6 +1082,37 @@
 
     <div class="section-divider" aria-hidden="true"><span>✦</span></div>
 
+    <section id="timmytext">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">From the Archive</div>
+          <h2>TimmyText v1</h2>
+        </div>
+        <p>Our first project from way back in the day. Enjoy a little nostalgia with a Zork-style text adventure—ASCII art and all.</p>
+      </div>
+
+      <div class="timmytext-shell">
+        <div class="timmytext-intro">
+          <div>
+            <div class="section-kicker">The Original Adventures</div>
+            <h3>A small doorway into TimmyText.</h3>
+            <p>Choose a story, read the scene, and type what you want to do. Type <strong>help</strong> at any time to see the commands.</p>
+          </div>
+          <button class="timmytext-restart" id="timmytextRestart" type="button">Restart / Story Menu</button>
+        </div>
+        <div class="timmytext-terminal">
+          <div class="timmytext-log" id="timmytextLog" role="log" aria-live="polite" aria-label="TimmyText game output"></div>
+          <form class="timmytext-form" id="timmytextForm" autocomplete="off">
+            <label class="timmytext-prompt" aria-label="Game command"><span aria-hidden="true">&gt;</span><input id="timmytextInput" type="text" maxlength="100" spellcheck="false" placeholder="Type a command…"></label>
+            <button class="timmytext-submit" type="submit">Enter</button>
+          </form>
+          <p class="timmytext-note">Runs entirely in your browser. No download or sign-in needed.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span>✦</span></div>
+
     <section id="roadmap">
       <div class="section-heading">
         <div>
@@ -1233,6 +1266,8 @@
     © 2026 Sheet Ghost Studios
   </footer>
 
+  <script src="timmytext-data.js"></script>
+  <script src="timmytext.js"></script>
   <script>
     const intro = document.getElementById("intro");
     const enterButton = document.getElementById("enterStudio");

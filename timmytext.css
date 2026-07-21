@@ -1,0 +1,17 @@
+.timmytext-shell{overflow:hidden;border:1px solid rgba(224,184,110,.3);border-radius:24px;background:linear-gradient(145deg,rgba(13,31,34,.97),rgba(4,13,17,.99));box-shadow:0 24px 70px rgba(0,0,0,.34)}
+.timmytext-intro{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;padding:30px 32px 24px;border-bottom:1px solid rgba(224,184,110,.18)}
+.timmytext-intro h3{margin:4px 0 8px;color:var(--cream);font:400 clamp(1.7rem,4vw,2.6rem)/1.05 Georgia,"Times New Roman",serif}
+.timmytext-intro p{max-width:720px;margin:0;color:var(--muted);line-height:1.7}
+.timmytext-restart{padding:10px 16px;border:1px solid rgba(224,184,110,.45);border-radius:999px;background:transparent;color:var(--gold);font:inherit;cursor:pointer}
+.timmytext-restart:hover,.timmytext-restart:focus-visible{background:rgba(224,184,110,.1);outline:none}
+.timmytext-terminal{padding:20px;background:#03090b}
+.timmytext-log{height:min(62vh,570px);min-height:390px;overflow-y:auto;padding:22px;border:1px solid rgba(133,196,165,.22);border-radius:12px;background:radial-gradient(circle at 50% 0,rgba(41,100,75,.11),transparent 55%),#020708;color:#b8e7c7;font:14px/1.48 "Courier New",monospace;scrollbar-color:#527a63 #07100d}
+.terminal-output,.terminal-command{white-space:pre-wrap;overflow-wrap:anywhere}
+.terminal-command{margin-top:14px;color:#e0b86e}
+.timmytext-form{display:flex;gap:12px;margin-top:14px}
+.timmytext-prompt{display:flex;flex:1;align-items:center;gap:10px;padding:0 16px;border:1px solid rgba(133,196,165,.35);border-radius:10px;background:#06100d;color:#86c99e;font:700 16px "Courier New",monospace}
+.timmytext-prompt input{width:100%;padding:14px 0;border:0;outline:0;background:transparent;color:#d5f4df;font:16px "Courier New",monospace}
+.timmytext-submit{padding:0 22px;border:0;border-radius:10px;background:var(--gold);color:#10201d;font-weight:800;cursor:pointer}
+.timmytext-submit:hover,.timmytext-submit:focus-visible{filter:brightness(1.08);outline:2px solid #fff;outline-offset:2px}
+.timmytext-note{margin:12px 2px 0;color:rgba(212,225,215,.58);font-size:.8rem}
+@media(max-width:700px){.timmytext-intro{grid-template-columns:1fr;padding:24px 20px 20px}.timmytext-restart{justify-self:start}.timmytext-terminal{padding:12px}.timmytext-log{height:65vh;min-height:410px;padding:15px;font-size:12px}.timmytext-form{gap:8px}.timmytext-submit{padding:0 14px}}
