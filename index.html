@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sheet Ghost Studios creates handcrafted indie games filled with mystery, nostalgia, and quiet wonder.">
+  <meta name="theme-color" content="#071219">
+  <title>Sheet Ghost Studios</title>
+
+  <style>
+    :root {
+      --ink: #071219;
+      --ink-2: #0d2027;
+      --ink-3: #15313a;
+      --cream: #f2e7cf;
+      --cream-soft: #cfc4ae;
+      --gold: #e0b86e;
+      --gold-soft: rgba(224, 184, 110, .22);
+      --line: rgba(242, 231, 207, .14);
+      --panel: rgba(9, 25, 31, .86);
+      --shadow: 0 28px 80px rgba(0, 0, 0, .42);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 75% 10%, rgba(71, 123, 132, .20), transparent 27rem),
+        radial-gradient(circle at 20% 75%, rgba(224, 184, 110, .08), transparent 30rem),
+        linear-gradient(180deg, #09161c 0%, #061015 100%);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .23;
+      background-image:
+        radial-gradient(circle, rgba(255, 222, 145, .72) 0 1px, transparent 1.4px);
+      background-size: 92px 92px;
+      animation: starsDrift 80s linear infinite;
+    }
+
+    @keyframes starsDrift {
+      to { background-position: 180px 90px; }
+    }
+
+    a { color: inherit; }
+
+    /* Intro */
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(224, 184, 110, .12), transparent 24rem),
+        #061015;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-inner {
+      max-width: 760px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: introIn 1.25s .2s ease forwards;
+    }
+
+    @keyframes introIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .intro-kicker,
+    .eyebrow,
+    .section-kicker,
+    .status,
+    .roadmap-date {
+      color: var(--gold);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .intro h1 {
+      margin: 16px 0 20px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.2rem, 9vw, 7.5rem);
+      font-weight: 400;
+      line-height: .9;
+    }
+
+    .intro p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--cream-soft);
+      font-size: 1.06rem;
+    }
+
+    .team-signoff {
+      margin-top: 18px !important;
+      color: var(--cream) !important;
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    .enter-button {
+      margin-top: 34px;
+      padding: 14px 28px;
+      border: 1px solid rgba(224, 184, 110, .62);
+      border-radius: 999px;
+      color: #0b1519;
+      background: var(--gold);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .enter-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 34px rgba(224, 184, 110, .22);
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+      padding: 17px 5vw;
+      background: rgba(6, 16, 21, .84);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      text-decoration: none;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.12rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav a {
+      color: var(--cream-soft);
+      text-decoration: none;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      transition: color .2s ease;
+    }
+
+    .nav a:hover { color: var(--gold); }
+
+    /* Hero */
+    .hero {
+      width: min(1240px, calc(100% - 32px));
+      margin: 28px auto 0;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      background: #071219;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image {
+      position: relative;
+      min-height: min(72vh, 790px);
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .hero-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background: url("assets/sheet-ghost-logo.png") center / cover no-repeat;
+      transform: scale(1.015);
+      animation: heroBreathe 14s ease-in-out infinite;
+    }
+
+    @keyframes heroBreathe {
+      0%, 100% { transform: scale(1.015); }
+      50% { transform: scale(1.035); }
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(4, 11, 15, .05), rgba(4, 11, 15, .34) 58%, rgba(4, 11, 15, .92)),
+        linear-gradient(90deg, rgba(4, 11, 15, .28), transparent 48%, rgba(4, 11, 15, .22));
+    }
+
+    /* A cropped duplicate creates a subtle periodic "sheet catches the breeze" illusion. */
+    .ghost-billow {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background: url("assets/sheet-ghost-logo.png") center / cover no-repeat;
+      clip-path: polygon(34% 20%, 67% 20%, 71% 62%, 59% 72%, 43% 72%, 30% 60%);
+      opacity: 0;
+      transform-origin: 50% 25%;
+      animation: ghostBreeze 18s ease-in-out infinite;
+    }
+
+    @keyframes ghostBreeze {
+      0%, 68%, 100% {
+        opacity: 0;
+        transform: scale(1) skewX(0deg) translateY(0);
+      }
+      71% {
+        opacity: .22;
+        transform: scale(1.012) skewX(-.8deg) translateY(-2px);
+      }
+      75% {
+        opacity: .34;
+        transform: scale(1.025) skewX(1.2deg) translateY(-6px);
+      }
+      79% {
+        opacity: .18;
+        transform: scale(1.01) skewX(-.4deg) translateY(-2px);
+      }
+      84% {
+        opacity: 0;
+        transform: scale(1) skewX(0deg) translateY(0);
+      }
+    }
+
+    .hero-copy {
+      position: absolute;
+      left: clamp(18px, 3.2vw, 44px);
+      bottom: clamp(18px, 3vw, 36px);
+      width: min(390px, calc(100% - 36px));
+      padding: 18px 20px 20px;
+      border: 1px solid rgba(224, 184, 110, .34);
+      border-radius: 14px;
+      background: rgba(5, 15, 20, .86);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .34);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-copy h2 {
+      margin: 8px 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.75rem, 3.2vw, 3rem);
+      font-weight: 400;
+      line-height: 1.03;
+      text-shadow: none;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      max-width: 34ch;
+      color: #e1d7c2;
+      font-size: clamp(.9rem, 1.4vw, 1rem);
+      line-height: 1.55;
+      text-shadow: none;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    section { padding: 92px 0; }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+      gap: 36px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    .section-heading h2 {
+      margin: 8px 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.7rem, 6vw, 5rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--cream-soft);
+    }
+
+    /* Games */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      position: relative;
+      min-height: 330px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 92% 8%, rgba(224, 184, 110, .08), transparent 15rem),
+        linear-gradient(145deg, #15313a, #08171d);
+      box-shadow: 0 18px 55px rgba(0, 0, 0, .24);
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(224, 184, 110, .48);
+    }
+
+    .game-card::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      right: -80px;
+      bottom: -80px;
+      border: 1px solid var(--gold-soft);
+      border-radius: 50%;
+    }
+
+    .game-card h3 {
+      margin: 13px 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .game-card p {
+      margin: 0;
+      max-width: 52ch;
+      color: var(--cream-soft);
+    }
+
+    .game-card .small {
+      display: block;
+      margin-top: 24px;
+      color: var(--cream);
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    /* Roadmap */
+    .roadmap-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .roadmap-item {
+      display: grid;
+      grid-template-columns: minmax(190px, .65fr) minmax(0, 1.6fr);
+      gap: 34px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #09191f;
+    }
+
+    .roadmap-item h3 {
+      margin: 8px 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.65rem;
+      font-weight: 400;
+    }
+
+    .roadmap-copy p {
+      margin: 0;
+      color: var(--cream-soft);
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 10px;
+      border: 1px solid rgba(242, 231, 207, .14);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .035);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: var(--progress);
+      border-radius: inherit;
+      background: linear-gradient(90deg, #9b7b41, var(--gold));
+      box-shadow: 0 0 24px rgba(224, 184, 110, .20);
+      animation: loadBar 1.3s ease both;
+    }
+
+    @keyframes loadBar {
+      from { width: 0; }
+      to { width: var(--progress); }
+    }
+
+    .progress-number {
+      min-width: 42px;
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    /* Zen */
+    .zen-shell {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(224, 184, 110, .08), transparent 22rem),
+        #07141a;
+      box-shadow: var(--shadow);
+    }
+
+    .zen-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .zen-title h3 {
+      margin: 6px 0 2px;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 400;
+    }
+
+    .zen-title p {
+      margin: 0;
+      color: var(--cream-soft);
+      font-style: italic;
+    }
+
+    .little-windows {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .little-window {
+      min-height: 190px;
+      padding: 14px;
+      border: 7px solid rgba(240, 226, 201, .78);
+      border-bottom-width: 28px;
+      border-radius: 9px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .28);
+      overflow: hidden;
+      font-family: "Courier New", monospace;
+      font-size: .72rem;
+      white-space: pre;
+      line-height: 1.25;
+      color: rgba(255, 255, 255, .88);
+    }
+
+    .snow { background: linear-gradient(180deg, #8db8d1, #42687b); }
+    .rain { background: linear-gradient(180deg, #6b6b9b, #303650); }
+    .ocean { background: linear-gradient(180deg, #4ba9ae, #0f5664); }
+    .fire { background: linear-gradient(180deg, #d06d3e, #5a2522); }
+
+    .window-label {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255,255,255,.72);
+      font-size: .66rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .crt {
+      position: relative;
+      width: min(660px, 100%);
+      margin: 36px auto 0;
+      padding: 22px 25px 42px;
+      border: 10px solid #3a342d;
+      border-radius: 22px 22px 34px 34px;
+      background: #181715;
+      box-shadow: inset 0 0 0 2px #6a5c4a, 0 26px 60px rgba(0,0,0,.42);
+    }
+
+    .crt-screen {
+      min-height: 190px;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      border: 4px solid #242521;
+      border-radius: 34px;
+      color: #9fe0bd;
+      background:
+        repeating-linear-gradient(180deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px),
+        radial-gradient(circle, #17352c, #06120f 70%);
+      font-family: "Courier New", monospace;
+      text-align: center;
+      text-shadow: 0 0 9px rgba(159, 224, 189, .38);
+    }
+
+    .crt-screen strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.3rem;
+      letter-spacing: .14em;
+    }
+
+    .crt::after {
+      content: "";
+      position: absolute;
+      width: 62px;
+      height: 12px;
+      right: 28px;
+      bottom: 15px;
+      border-radius: 999px;
+      background: #b58f4a;
+      box-shadow: -78px 0 0 #55514a;
+    }
+
+    /* Journal */
+    .journal-card {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #09191f;
+    }
+
+    .journal-card h3 {
+      margin: 8px 0 8px;
+      font-family: Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+
+    .journal-card p {
+      margin: 0;
+      color: var(--cream-soft);
+    }
+
+    footer {
+      padding: 42px 20px 56px;
+      border-top: 1px solid var(--line);
+      color: var(--cream-soft);
+      text-align: center;
+      font-size: .88rem;
+    }
+
+    .firefly {
+      position: fixed;
+      z-index: 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: #ffe29a;
+      box-shadow: 0 0 10px 3px rgba(255, 211, 102, .34);
+      animation: fly var(--duration) ease-in-out infinite;
+      opacity: 0;
+    }
+
+    @keyframes fly {
+      0%, 100% { opacity: 0; transform: translate(0, 0); }
+      15%, 70% { opacity: .8; }
+      45% { transform: translate(var(--x), var(--y)); }
+      80% { transform: translate(calc(var(--x) * -.35), calc(var(--y) * .45)); }
+    }
+
+    @media (max-width: 850px) {
+      .site-header { flex-direction: column; gap: 10px; }
+      .nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+      .section-heading { grid-template-columns: 1fr; gap: 14px; }
+      .games-grid { grid-template-columns: 1fr; }
+      .roadmap-item { grid-template-columns: 1fr; gap: 14px; }
+      .little-windows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-image { min-height: 70vh; }
+      .hero-copy {
+        left: 14px;
+        bottom: 14px;
+        width: min(365px, calc(100% - 28px));
+        padding: 17px 18px 19px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .brand { font-size: .92rem; }
+      .nav a { font-size: .68rem; }
+      .hero { width: calc(100% - 18px); border-radius: 14px; }
+      main { width: calc(100% - 24px); }
+      section { padding: 70px 0; }
+      .little-windows { grid-template-columns: 1fr; }
+      .little-window { min-height: 165px; }
+      .intro h1 { font-size: 3.6rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 auto;
+      color: var(--gold);
+      opacity: .78;
+      max-width: 760px;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(224,184,110,.48), transparent);
+    }
+
+    .section-divider span {
+      font-size: .82rem;
+      letter-spacing: .22em;
+    }
+
+    .nav a.active {
+      color: var(--gold);
+      position: relative;
+    }
+
+    .nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -8px;
+      width: 22px;
+      height: 1px;
+      transform: translateX(-50%);
+      background: var(--gold);
+      box-shadow: 0 0 10px rgba(224,184,110,.45);
+    }
+
+    .studio-tagline {
+      margin-top: 18px;
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .game-card {
+      padding: 0;
+    }
+
+    .game-card-body {
+      padding: 28px 30px 30px;
+    }
+
+    .game-gallery {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(242,231,207,.12);
+      background: #071219;
+    }
+
+    .game-gallery-main {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      object-fit: cover;
+      transition: transform .5s ease, opacity .25s ease;
+    }
+
+    .game-card:hover .game-gallery-main {
+      transform: scale(1.018);
+    }
+
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(var(--thumbs, 3), 1fr);
+      gap: 1px;
+      background: rgba(242,231,207,.12);
+      border-top: 1px solid rgba(242,231,207,.10);
+    }
+
+    .gallery-thumb {
+      appearance: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      background: #071219;
+      position: relative;
+    }
+
+    .gallery-thumb img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 6;
+      object-fit: cover;
+      opacity: .58;
+      transition: opacity .2s ease, filter .2s ease;
+      filter: saturate(.82) brightness(.82);
+    }
+
+    .gallery-thumb:hover img,
+    .gallery-thumb.active img {
+      opacity: 1;
+      filter: saturate(1) brightness(1);
+    }
+
+    .gallery-thumb.active::after {
+      content: "";
+      position: absolute;
+      left: 14%;
+      right: 14%;
+      bottom: 0;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .gallery-label {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      padding: 7px 10px;
+      border: 1px solid rgba(242,231,207,.18);
+      border-radius: 999px;
+      color: var(--cream);
+      background: rgba(5,15,20,.88);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Featured release */
+    .featured-release {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(300px, .9fr);
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid rgba(224, 184, 110, .34);
+      border-radius: 22px;
+      background: #09191f;
+      box-shadow: var(--shadow);
+    }
+
+    .featured-release-media {
+      min-height: 420px;
+      background:
+        linear-gradient(90deg, transparent 58%, rgba(6, 16, 21, .82)),
+        url("assets/games/greenhouse-gameplay.jpg") center / cover no-repeat;
+    }
+
+    .featured-release-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(30px, 5vw, 58px);
+    }
+
+    .featured-release-copy h2 {
+      margin: 10px 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      font-weight: 400;
+      line-height: .98;
+    }
+
+    .featured-release-copy p {
+      margin: 0;
+      color: var(--cream-soft);
+    }
+
+    .release-note {
+      margin-top: 18px !important;
+      color: var(--cream) !important;
+      font-size: .9rem;
+    }
+
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      margin-top: 26px;
+      padding: 13px 22px;
+      border: 1px solid rgba(224, 184, 110, .72);
+      border-radius: 999px;
+      color: #0b1519;
+      background: var(--gold);
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .download-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 34px rgba(224, 184, 110, .22);
+    }
+
+    .game-download-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .game-download-row .download-button {
+      margin-top: 0;
+    }
+
+    @media (max-width: 850px) {
+      .featured-release { grid-template-columns: 1fr; }
+      .featured-release-media {
+        min-height: 320px;
+        background:
+          linear-gradient(180deg, transparent 58%, rgba(6, 16, 21, .88)),
+          url("assets/games/greenhouse-gameplay.jpg") center / cover no-repeat;
+      }
+    }
+
+    .footer-phrase {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .footer-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 0 auto 18px;
+      max-width: 360px;
+      color: var(--gold);
+    }
+
+    .footer-mark::before,
+    .footer-mark::after {
+      content: "";
+      width: 90px;
+      height: 1px;
+      background: rgba(224,184,110,.42);
+    }
+
+    @media (max-width: 700px) {
+      .game-card-body { padding: 24px 22px 26px; }
+      .gallery-thumb img { aspect-ratio: 16 / 8; }
+      .nav a.active::after { bottom: -5px; }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="intro" id="intro">
+    <div class="intro-inner">
+      <div class="intro-kicker">Welcome to our little corner of the woods</div>
+      <h1>Sheet Ghost<br>Studios</h1>
+      <p>
+        We create handcrafted indie games inspired by quiet forests,
+        forgotten places, cozy nights, and stories that linger.
+        Thank you for being here.
+      </p>
+      <p class="team-signoff">— The Sheet Ghost Studios Team</p>
+      <button class="enter-button" id="enterStudio">Enter Studio</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="#home">Sheet Ghost Studios</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#featured">Featured</a>
+      <a href="#games">Games</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#zen">Zen</a>
+      <a href="#journal">Journal</a>
+    </nav>
+  </header>
+
+  <div class="hero" id="home">
+    <div class="hero-image">
+      <div class="ghost-billow" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <div class="eyebrow">Independent Game Studio</div>
+        <h2>Ordinary places.<br>Extraordinary stories.</h2>
+        <p>
+          Handcrafted pixel-art worlds made to be explored slowly.
+        </p>
+        <div class="studio-tagline">Cozy games, one pixel at a time.</div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section id="featured">
+      <article class="featured-release">
+        <div class="featured-release-media" role="img" aria-label="Moonlit Greenhouse gameplay beneath a glowing moonlit window"></div>
+        <div class="featured-release-copy">
+          <div class="section-kicker">Featured Release · Free Demo</div>
+          <h2>Moonlit Greenhouse</h2>
+          <p>Return to your grandmother's greenhouse and grow magical plants beneath the moonlight. Tend unusual flowers, feed the koi, unlock upgrades, and uncover quiet memories hidden throughout this cozy pixel-art world.</p>
+          <p class="release-note">The Moonlit Greenhouse demo is available now for Windows on itch.io.</p>
+          <a class="download-button" href="https://sheet-ghost-studios.itch.io/moonlit-garden-demo-v-100" target="_blank" rel="noopener noreferrer">Download Free Demo</a>
+        </div>
+      </article>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span>✦</span></div>
+
+    <section id="games">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Our Work</div>
+          <h2>Games</h2>
+        </div>
+        <p>
+          Four worlds currently taking shape—from moonlit gardens and lonely
+          motels to distant fire towers and civilizations spanning ten thousand years.
+        </p>
+      </div>
+
+
+      <div class="games-grid">
+        <article class="game-card">
+          <div class="game-gallery">
+            <img class="game-gallery-main" src="assets/games/midnight-inn-day.jpg" alt="Midnight INN featured artwork">
+            <div class="gallery-label">Day Shift</div>
+            <div class="gallery-thumbs" style="--thumbs:3">
+            <button class="gallery-thumb active" type="button" data-src="assets/games/midnight-inn-day.jpg">
+              <img src="assets/games/midnight-inn-day.jpg" alt="Midnight INN — Day Shift">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/midnight-inn-night.jpg">
+              <img src="assets/games/midnight-inn-night.jpg" alt="Midnight INN — Night Shift">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/midnight-inn-investigation.jpg">
+              <img src="assets/games/midnight-inn-investigation.jpg" alt="Midnight INN — Investigation">
+            </button>
+            </div>
+          </div>
+          <div class="game-card-body">
+            <div class="status">Early Access Development</div>
+            <h3>Midnight INN</h3>
+            <p>Decide who is safe to stay—and who needs to be evicted before the night takes a turn. Read the guests, watch for inconsistencies, and make the call.</p>
+            <span class="small">Motel clerk horror game</span>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="game-gallery">
+            <img class="game-gallery-main" src="assets/games/greenhouse-study.jpg" alt="Moonlit Greenhouse featured artwork">
+            <div class="gallery-label">Grandmother's Study</div>
+            <div class="gallery-thumbs" style="--thumbs:4">
+            <button class="gallery-thumb active" type="button" data-src="assets/games/greenhouse-study.jpg">
+              <img src="assets/games/greenhouse-study.jpg" alt="Moonlit Greenhouse — Grandmother's Study">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/greenhouse-koi.jpg">
+              <img src="assets/games/greenhouse-koi.jpg" alt="Moonlit Greenhouse — Koi Pond">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/greenhouse-photo-mode.jpg">
+              <img src="assets/games/greenhouse-photo-mode.jpg" alt="Moonlit Greenhouse — Photo Mode">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/greenhouse-gameplay.jpg">
+              <img src="assets/games/greenhouse-gameplay.jpg" alt="Moonlit Greenhouse — Gameplay">
+            </button>
+            </div>
+          </div>
+          <div class="game-card-body">
+            <div class="status">Demo Available Now</div>
+            <h3>Moonlit Greenhouse</h3>
+            <p>Grow magical plants beneath the moonlight. Discover 20+ plant species, combine 5+ traits, unlock multiple upgrade tiers, and uncover memories hidden inside a cozy inherited greenhouse.</p>
+            <div class="game-download-row">
+              <a class="download-button" href="https://sheet-ghost-studios.itch.io/moonlit-garden-demo-v-100" target="_blank" rel="noopener noreferrer">Download Demo</a>
+              <span class="small" style="margin-top:0">Cozy gardening game</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="game-gallery">
+            <img class="game-gallery-main" src="assets/games/fire-tower-interior.jpg" alt="Fire Tower North featured artwork">
+            <div class="gallery-label">West Peak Lookout</div>
+            <div class="gallery-thumbs" style="--thumbs:3">
+            <button class="gallery-thumb active" type="button" data-src="assets/games/fire-tower-interior.jpg">
+              <img src="assets/games/fire-tower-interior.jpg" alt="Fire Tower North — West Peak Lookout">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/fire-tower-storm.jpg">
+              <img src="assets/games/fire-tower-storm.jpg" alt="Fire Tower North — Storm Watch">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/fire-tower-lake.jpg">
+              <img src="assets/games/fire-tower-lake.jpg" alt="Fire Tower North — Cedar Lake">
+            </button>
+            </div>
+          </div>
+          <div class="game-card-body">
+            <div class="status">Early Development</div>
+            <h3>Fire Tower North</h3>
+            <p>Watch, listen, and explore. Scan the wilderness, track smoke, fires, wildlife, and strange events—then leave the tower to explore the land and uncover the mystery below.</p>
+            <span class="small">Cozy pixel fire-tower simulation</span>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="game-gallery">
+            <img class="game-gallery-main" src="assets/games/civilization-world-map.jpg" alt="Desktop Civilization featured artwork">
+            <div class="gallery-label">The World</div>
+            <div class="gallery-thumbs" style="--thumbs:4">
+            <button class="gallery-thumb active" type="button" data-src="assets/games/civilization-world-map.jpg">
+              <img src="assets/games/civilization-world-map.jpg" alt="Desktop Civilization — The World">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/civilization-difficulty.jpg">
+              <img src="assets/games/civilization-difficulty.jpg" alt="Desktop Civilization — Temperament">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/civilization-city.jpg">
+              <img src="assets/games/civilization-city.jpg" alt="Desktop Civilization — City View">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/civilization-trade-map.jpg">
+              <img src="assets/games/civilization-trade-map.jpg" alt="Desktop Civilization — Trade Routes">
+            </button>
+            </div>
+          </div>
+          <div class="game-card-body">
+            <div class="status">Early Development</div>
+            <h3>Desktop Civilization</h3>
+            <p>Guide a clan from stacked stones to portal travel. Build trade routes, sign treaties, wage wars, survive disasters, and watch your civilization evolve across more than 10,000 years.</p>
+            <span class="small">Generational civilization simulation</span>
+          </div>
+        </article>
+      </div>
+
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span>✦</span></div>
+
+    <section id="roadmap">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">What Comes Next</div>
+          <h2>Roadmap</h2>
+        </div>
+        <p>
+          A living snapshot of what we are polishing, balancing, rebuilding, and
+          expanding next.
+        </p>
+      </div>
+
+      <div class="roadmap-list">
+        <article class="roadmap-item">
+          <div>
+            <div class="roadmap-date">July 2026</div>
+            <h3>Moonlit Greenhouse</h3>
+          </div>
+          <div class="roadmap-copy">
+            <p>
+              Endgame fixes, asset recalibration, game-length extension, additional
+              plants, more traits, and more cozy surprises.
+            </p>
+            <div class="progress-row">
+              <div class="progress-track"><div class="progress-fill" style="--progress:70%"></div></div>
+              <div class="progress-number">70%</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="roadmap-item">
+          <div>
+            <div class="roadmap-date">July 2026</div>
+            <h3>Midnight INN</h3>
+          </div>
+          <div class="roadmap-copy">
+            <p>
+              Balance RNG statistics, reduce rare-event frequency, add updated sprites
+              and backgrounds, deepen guest storylines, and synchronize peek images
+              with ongoing suspicion.
+            </p>
+            <div class="progress-row">
+              <div class="progress-track"><div class="progress-fill" style="--progress:70%"></div></div>
+              <div class="progress-number">70%</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="roadmap-item">
+          <div>
+            <div class="roadmap-date">August 2026</div>
+            <h3>Fire Tower North</h3>
+          </div>
+          <div class="roadmap-copy">
+            <p>
+              Finish the travel system, expand locations and sub-locations, update
+              branching NPC dialogue, revise multiple endings, and refine movement.
+            </p>
+            <div class="progress-row">
+              <div class="progress-track"><div class="progress-fill" style="--progress:20%"></div></div>
+              <div class="progress-number">20%</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="roadmap-item">
+          <div>
+            <div class="roadmap-date">September 2026</div>
+            <h3>Desktop Civilization</h3>
+          </div>
+          <div class="roadmap-copy">
+            <p>
+              Optimize RNG, balance relaxed and brutal modes, expand disasters and
+              major events, extend the story, and add future provinces and city upgrades.
+            </p>
+            <div class="progress-row">
+              <div class="progress-track"><div class="progress-fill" style="--progress:40%"></div></div>
+              <div class="progress-number">40%</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span>✦</span></div>
+
+    <section id="zen">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">A Quiet Corner</div>
+          <h2>Zen</h2>
+        </div>
+        <p>
+          Catch the breeze. Relax for a moment. These four little windows are adapted
+          from the original TimmyOS Zen tab.
+        </p>
+      </div>
+
+      <div class="zen-shell">
+        <div class="zen-title">
+          <div class="section-kicker">Four Little Windows</div>
+          <h3>Stay awhile.</h3>
+          <p>Snow, rain, ocean, and fire—exactly as they appear in TimmyOS.</p>
+        </div>
+
+        <div class="little-windows">
+          <div class="little-window snow" id="snowWindow"></div>
+          <div class="little-window rain" id="rainWindow"></div>
+          <div class="little-window ocean" id="oceanWindow"></div>
+          <div class="little-window fire" id="fireWindow"></div>
+        </div>
+
+        <div class="crt" aria-label="TimmyOS web terminal preview">
+          <div class="crt-screen">
+            <div>
+              <strong>TIMMY OS</strong>
+              Local Python edition detected.<br>
+              A hand-picked browser version of the quietest features is coming soon.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span>✦</span></div>
+
+    <section id="journal">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Studio Notes</div>
+          <h2>Journal</h2>
+        </div>
+        <p>Small updates from behind the scenes.</p>
+      </div>
+
+      <article class="journal-card">
+        <div class="roadmap-date">July 2026</div>
+        <h3>The website is live.</h3>
+        <p>
+          Sheet Ghost Studios officially has a home on the web. Thank you for being
+          here at the beginning.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-mark"><span>✦</span></div>
+    <span class="footer-phrase">The porch light is always on.</span>
+    Thanks for spending a little time with us.<br>
+    © 2026 Sheet Ghost Studios
+  </footer>
+
+  <script>
+    const intro = document.getElementById("intro");
+    const enterButton = document.getElementById("enterStudio");
+
+    if (sessionStorage.getItem("sheetGhostEntered") === "yes") {
+      intro.classList.add("hidden");
+    }
+
+    enterButton.addEventListener("click", () => {
+      sessionStorage.setItem("sheetGhostEntered", "yes");
+      intro.classList.add("hidden");
+    });
+
+    const scenes = {
+      snow: [
+`       *        *
+   *       .        *
+      /\\
+     /  \\      *
+    /____\\
+      ||       *`,
+`   *       *       .
+      *      *
+      /\\
+   * /  \\        *
+    /____\\
+      ||`,
+`      .      *     
+  *        *      *
+      /\\
+     /  \\   *
+    /____\\
+  *   ||`
+      ],
+      rain: [
+` .  |  .   |  .
+ |  .  |  .  |
+   _________
+  /  _   _  \\
+ |  | | | |  |
+ |__|_|_|_|__|`,
+` |  .  |  .  |
+ .  |  .  |  .
+   _________
+  /  _   _  \\
+ |  | | | |  |
+ |__|_|_|_|__|`,
+` . | . | . | .
+ | . | . | . |
+   _________
+  /  _   _  \\
+ |  | | | |  |
+ |__|_|_|_|__|`
+      ],
+      ocean: [
+`       .      .
+ ~~~  ~~~~~  ~~~
+    ><(((°>
+ ~~~~~  ~~~~  ~~
+       ~~~`,
+`    .       .
+ ~~  ~~~~~~  ~~~
+       ><(((°>
+ ~~~~  ~~~  ~~~
+    ~~~~~`,
+` .          .
+ ~~~~~  ~~~  ~~
+  ><(((°>     
+ ~~  ~~~~~  ~~~
+      ~~~`
+      ],
+      fire: [
+`       (  )
+      (    )
+       )  (
+      /____\\
+     /|    |\\
+    /_|____|_\\`,
+`        )(
+       (  )
+      (    )
+      /____\\
+     /|    |\\
+    /_|____|_\\`,
+`       ( )
+      (   )
+       ( )
+      /____\\
+     /|    |\\
+    /_|____|_\\`
+      ]
+    };
+
+    const windowEls = {
+      snow: document.getElementById("snowWindow"),
+      rain: document.getElementById("rainWindow"),
+      ocean: document.getElementById("oceanWindow"),
+      fire: document.getElementById("fireWindow")
+    };
+
+    let frame = 0;
+    function drawWindows() {
+      Object.entries(windowEls).forEach(([name, el]) => {
+        el.textContent = scenes[name][frame % scenes[name].length];
+        const label = document.createElement("span");
+        label.className = "window-label";
+        label.textContent = name;
+        el.appendChild(label);
+      });
+      frame++;
+    }
+    drawWindows();
+    setInterval(drawWindows, 900);
+
+    for (let i = 0; i < 14; i++) {
+      const dot = document.createElement("span");
+      dot.className = "firefly";
+      dot.style.left = Math.random() * 100 + "vw";
+      dot.style.top = (25 + Math.random() * 70) + "vh";
+      dot.style.setProperty("--duration", (11 + Math.random() * 14) + "s");
+      dot.style.setProperty("--x", (-50 + Math.random() * 100) + "px");
+      dot.style.setProperty("--y", (-80 + Math.random() * 120) + "px");
+      dot.style.animationDelay = (-Math.random() * 18) + "s";
+      document.body.appendChild(dot);
+    }
+
+    document.querySelectorAll(".game-gallery").forEach(gallery => {
+      const main = gallery.querySelector(".game-gallery-main");
+      const label = gallery.querySelector(".gallery-label");
+      const thumbs = [...gallery.querySelectorAll(".gallery-thumb")];
+
+      thumbs.forEach((thumb, index) => {
+        thumb.addEventListener("click", () => {
+          thumbs.forEach(t => t.classList.remove("active"));
+          thumb.classList.add("active");
+          main.style.opacity = "0.25";
+
+          setTimeout(() => {
+            main.src = thumb.dataset.src;
+            main.alt = thumb.querySelector("img").alt;
+            label.textContent = thumb.querySelector("img").alt.split("—").pop().trim();
+            main.style.opacity = "1";
+          }, 140);
+        });
+      });
+    });
+
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const observedSections = navLinks
+      .map(link => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(link => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + entry.target.id
+          );
+        });
+      });
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
+
+    observedSections.forEach(section => observer.observe(section));
+
+  </script>
+</body>
+</html>
