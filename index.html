@@ -854,6 +854,78 @@
       margin-top: 0;
     }
 
+    /* Featured grid (multiple games) */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .featured-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(224, 184, 110, .28);
+      border-radius: 18px;
+      background: #09191f;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .28);
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(224, 184, 110, .55);
+    }
+
+    .featured-card-media {
+      aspect-ratio: 4 / 3;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .featured-card-body {
+      padding: 18px 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .featured-badge {
+      color: var(--gold);
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .featured-card h3 {
+      margin: 2px 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.24rem;
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    .featured-card .download-button {
+      margin-top: auto;
+      align-self: flex-start;
+      padding: 9px 16px;
+      font-size: .66rem;
+    }
+
+    @media (max-width: 1000px) {
+      .featured-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 620px) {
+      .featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 420px) {
+      .featured-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 850px) {
       .featured-release { grid-template-columns: 1fr; }
       .featured-release-media {
@@ -944,16 +1016,63 @@
 
   <main>
     <section id="featured">
-      <article class="featured-release">
-        <div class="featured-release-media" role="img" aria-label="Moonlit Greenhouse gameplay beneath a glowing moonlit window"></div>
-        <div class="featured-release-copy">
-          <div class="section-kicker">Featured Release · Free Demo</div>
-          <h2>Moonlit Greenhouse</h2>
-          <p>Return to your grandmother's greenhouse and grow magical plants beneath the moonlight. Tend unusual flowers, feed the koi, unlock upgrades, and uncover quiet memories hidden throughout this cozy pixel-art world.</p>
-          <p class="release-note">The Moonlit Greenhouse demo is available now for Windows on itch.io.</p>
-          <a class="download-button" href="https://sheet-ghost-studios.itch.io/moonlit-garden-demo-v-100" target="_blank" rel="noopener noreferrer">Download Free Demo</a>
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Now On Itch.io</div>
+          <h2>Featured</h2>
         </div>
-      </article>
+        <p>
+          Every current build, ready to play right now—from finished early
+          access releases to brand-new previews.
+        </p>
+      </div>
+
+      <div class="featured-grid">
+        <article class="featured-card">
+          <div class="featured-card-media" style="background-image:url('assets/games/greenhouse-gameplay.jpg')"></div>
+          <div class="featured-card-body">
+            <div class="featured-badge">Early Access · Full Game</div>
+            <h3>Moonlit Greenhouse</h3>
+            <a class="download-button" href="https://sheetghost-official.itch.io/moonlit-greenhouse" target="_blank" rel="noopener noreferrer">Get on itch.io</a>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-card-media" style="background-image:url('assets/games/midnight-inn-night.jpg')"></div>
+          <div class="featured-card-body">
+            <div class="featured-badge">Early Access · Full Game</div>
+            <h3>Midnight INN</h3>
+            <a class="download-button" href="https://sheetghost-official.itch.io/midnight-inn-v101-early-access" target="_blank" rel="noopener noreferrer">Get on itch.io</a>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-card-media" style="background-image:url('assets/games/civilization-world-map.jpg')"></div>
+          <div class="featured-card-body">
+            <div class="featured-badge">Early Access · Full Game</div>
+            <h3>Desktop Civilization</h3>
+            <a class="download-button" href="https://sheetghost-official.itch.io/desktop-civilization-v101-early-access-full-game" target="_blank" rel="noopener noreferrer">Get on itch.io</a>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-card-media" style="background-image:url('assets/games/fire-tower-interior.jpg')"></div>
+          <div class="featured-card-body">
+            <div class="featured-badge">Preview</div>
+            <h3>Fire Tower North</h3>
+            <a class="download-button" href="https://sheetghost-official.itch.io/last-lookout-tower-preview" target="_blank" rel="noopener noreferrer">Get on itch.io</a>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-card-media" style="background-image:url('assets/games/passing-through-title.png')"></div>
+          <div class="featured-card-body">
+            <div class="featured-badge">Preview</div>
+            <h3>Passing Through</h3>
+            <a class="download-button" href="https://sheetghost-official.itch.io/passing-through-preview" target="_blank" rel="noopener noreferrer">Get on itch.io</a>
+          </div>
+        </article>
+      </div>
     </section>
 
     <div class="section-divider" aria-hidden="true"><span>✦</span></div>
@@ -965,8 +1084,9 @@
           <h2>Games</h2>
         </div>
         <p>
-          Four worlds currently taking shape—from moonlit gardens and lonely
-          motels to distant fire towers and civilizations spanning ten thousand years.
+          Five worlds currently taking shape—from moonlit gardens and lonely
+          motels to distant fire towers, civilizations spanning ten thousand
+          years, and one new story just passing through.
         </p>
       </div>
 
@@ -989,10 +1109,13 @@
             </div>
           </div>
           <div class="game-card-body">
-            <div class="status">Early Access Development</div>
+            <div class="status">Early Access Available Now</div>
             <h3>Midnight INN</h3>
             <p>Decide who is safe to stay—and who needs to be evicted before the night takes a turn. Read the guests, watch for inconsistencies, and make the call.</p>
-            <span class="small">Motel clerk horror game</span>
+            <div class="game-download-row">
+              <a class="download-button" href="https://sheetghost-official.itch.io/midnight-inn-v101-early-access" target="_blank" rel="noopener noreferrer">Download on itch.io</a>
+              <span class="small" style="margin-top:0">Motel clerk horror game</span>
+            </div>
           </div>
         </article>
 
@@ -1016,11 +1139,11 @@
             </div>
           </div>
           <div class="game-card-body">
-            <div class="status">Demo Available Now</div>
+            <div class="status">Early Access Available Now</div>
             <h3>Moonlit Greenhouse</h3>
             <p>Grow magical plants beneath the moonlight. Discover 20+ plant species, combine 5+ traits, unlock multiple upgrade tiers, and uncover memories hidden inside a cozy inherited greenhouse.</p>
             <div class="game-download-row">
-              <a class="download-button" href="https://sheet-ghost-studios.itch.io/moonlit-garden-demo-v-100" target="_blank" rel="noopener noreferrer">Download Demo</a>
+              <a class="download-button" href="https://sheetghost-official.itch.io/moonlit-greenhouse" target="_blank" rel="noopener noreferrer">Download on itch.io</a>
               <span class="small" style="margin-top:0">Cozy gardening game</span>
             </div>
           </div>
@@ -1043,10 +1166,13 @@
             </div>
           </div>
           <div class="game-card-body">
-            <div class="status">Early Development</div>
+            <div class="status">Preview Available Now</div>
             <h3>Fire Tower North</h3>
             <p>Watch, listen, and explore. Scan the wilderness, track smoke, fires, wildlife, and strange events—then leave the tower to explore the land and uncover the mystery below.</p>
-            <span class="small">Cozy pixel fire-tower simulation</span>
+            <div class="game-download-row">
+              <a class="download-button" href="https://sheetghost-official.itch.io/last-lookout-tower-preview" target="_blank" rel="noopener noreferrer">Download on itch.io</a>
+              <span class="small" style="margin-top:0">Cozy pixel fire-tower simulation</span>
+            </div>
           </div>
         </article>
 
@@ -1070,10 +1196,43 @@
             </div>
           </div>
           <div class="game-card-body">
-            <div class="status">Early Development</div>
+            <div class="status">Early Access Available Now</div>
             <h3>Desktop Civilization</h3>
             <p>Guide a clan from stacked stones to portal travel. Build trade routes, sign treaties, wage wars, survive disasters, and watch your civilization evolve across more than 10,000 years.</p>
-            <span class="small">Generational civilization simulation</span>
+            <div class="game-download-row">
+              <a class="download-button" href="https://sheetghost-official.itch.io/desktop-civilization-v101-early-access-full-game" target="_blank" rel="noopener noreferrer">Download on itch.io</a>
+              <span class="small" style="margin-top:0">Generational civilization simulation</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="game-gallery">
+            <img class="game-gallery-main" src="assets/games/passing-through-title.png" alt="Passing Through featured artwork">
+            <div class="gallery-label">A New Journey</div>
+            <div class="gallery-thumbs" style="--thumbs:4">
+            <button class="gallery-thumb active" type="button" data-src="assets/games/passing-through-title.png">
+              <img src="assets/games/passing-through-title.png" alt="Passing Through — Title Screen">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/passing-through-lobby.png">
+              <img src="assets/games/passing-through-lobby.png" alt="Passing Through — Motel Lobby">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/passing-through-keepsake.png">
+              <img src="assets/games/passing-through-keepsake.png" alt="Passing Through — Entrusted Keepsake">
+            </button>
+            <button class="gallery-thumb" type="button" data-src="assets/games/passing-through-map.png">
+              <img src="assets/games/passing-through-map.png" alt="Passing Through — Memory Map">
+            </button>
+            </div>
+          </div>
+          <div class="game-card-body">
+            <div class="status">Preview Available Now</div>
+            <h3>Passing Through</h3>
+            <p>Rain on glass, a bell in the night, and fifty lives waiting down the road. Check in weary travelers, hold on to what they leave behind, and piece together their stories one memory at a time.</p>
+            <div class="game-download-row">
+              <a class="download-button" href="https://sheetghost-official.itch.io/passing-through-preview" target="_blank" rel="noopener noreferrer">Download on itch.io</a>
+              <span class="small" style="margin-top:0">New project</span>
+            </div>
           </div>
         </article>
       </div>
@@ -1137,8 +1296,8 @@
               plants, more traits, and more cozy surprises.
             </p>
             <div class="progress-row">
-              <div class="progress-track"><div class="progress-fill" style="--progress:70%"></div></div>
-              <div class="progress-number">70%</div>
+              <div class="progress-track"><div class="progress-fill" style="--progress:80%"></div></div>
+              <div class="progress-number">80%</div>
             </div>
           </div>
         </article>
@@ -1155,8 +1314,8 @@
               with ongoing suspicion.
             </p>
             <div class="progress-row">
-              <div class="progress-track"><div class="progress-fill" style="--progress:70%"></div></div>
-              <div class="progress-number">70%</div>
+              <div class="progress-track"><div class="progress-fill" style="--progress:80%"></div></div>
+              <div class="progress-number">80%</div>
             </div>
           </div>
         </article>
@@ -1172,8 +1331,8 @@
               branching NPC dialogue, revise multiple endings, and refine movement.
             </p>
             <div class="progress-row">
-              <div class="progress-track"><div class="progress-fill" style="--progress:20%"></div></div>
-              <div class="progress-number">20%</div>
+              <div class="progress-track"><div class="progress-fill" style="--progress:40%"></div></div>
+              <div class="progress-number">40%</div>
             </div>
           </div>
         </article>
@@ -1189,8 +1348,8 @@
               major events, extend the story, and add future provinces and city upgrades.
             </p>
             <div class="progress-row">
-              <div class="progress-track"><div class="progress-fill" style="--progress:40%"></div></div>
-              <div class="progress-number">40%</div>
+              <div class="progress-track"><div class="progress-fill" style="--progress:65%"></div></div>
+              <div class="progress-number">65%</div>
             </div>
           </div>
         </article>
@@ -1250,6 +1409,51 @@
 
       <article class="journal-card">
         <div class="roadmap-date">July 2026</div>
+        <h3>Uploaded full game: Moonlit Greenhouse (early access)</h3>
+        <p>
+          The full early access build of Moonlit Greenhouse is live now on
+          <a href="https://sheetghost-official.itch.io/moonlit-greenhouse" target="_blank" rel="noopener noreferrer">itch.io</a>.
+        </p>
+      </article>
+
+      <article class="journal-card">
+        <div class="roadmap-date">July 2026</div>
+        <h3>Uploaded full game: Midnight INN (early access)</h3>
+        <p>
+          The full early access build of Midnight INN is live now on
+          <a href="https://sheetghost-official.itch.io/midnight-inn-v101-early-access" target="_blank" rel="noopener noreferrer">itch.io</a>.
+        </p>
+      </article>
+
+      <article class="journal-card">
+        <div class="roadmap-date">July 2026</div>
+        <h3>Uploaded full game: Desktop Civilization (early access)</h3>
+        <p>
+          The full early access build of Desktop Civilization is live now on
+          <a href="https://sheetghost-official.itch.io/desktop-civilization-v101-early-access-full-game" target="_blank" rel="noopener noreferrer">itch.io</a>.
+        </p>
+      </article>
+
+      <article class="journal-card">
+        <div class="roadmap-date">July 2026</div>
+        <h3>Uploaded preview: Fire Tower North (Lookout Tower North)</h3>
+        <p>
+          A preview build of Fire Tower North is live now on
+          <a href="https://sheetghost-official.itch.io/last-lookout-tower-preview" target="_blank" rel="noopener noreferrer">itch.io</a>.
+        </p>
+      </article>
+
+      <article class="journal-card">
+        <div class="roadmap-date">July 2026</div>
+        <h3>Uploaded preview: Passing Through</h3>
+        <p>
+          A preview build of Passing Through is live now on
+          <a href="https://sheetghost-official.itch.io/passing-through-preview" target="_blank" rel="noopener noreferrer">itch.io</a>.
+        </p>
+      </article>
+
+      <article class="journal-card">
+        <div class="roadmap-date">July 2026</div>
         <h3>The website is live.</h3>
         <p>
           Sheet Ghost Studios officially has a home on the web. Thank you for being
@@ -1272,32 +1476,13 @@
     const intro = document.getElementById("intro");
     const enterButton = document.getElementById("enterStudio");
 
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
-
-    function resetPageToTop() {
-      if (window.location.hash) {
-        history.replaceState(null, "", window.location.pathname + window.location.search);
-      }
-      window.scrollTo(0, 0);
-      requestAnimationFrame(() => window.scrollTo(0, 0));
-    }
-
-    function showStudioFromTop() {
-      resetPageToTop();
-      intro.classList.add("hidden");
-    }
-
-    window.addEventListener("pageshow", resetPageToTop);
-
     if (sessionStorage.getItem("sheetGhostEntered") === "yes") {
-      showStudioFromTop();
+      intro.classList.add("hidden");
     }
 
     enterButton.addEventListener("click", () => {
       sessionStorage.setItem("sheetGhostEntered", "yes");
-      showStudioFromTop();
+      intro.classList.add("hidden");
     });
 
     const scenes = {
