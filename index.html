@@ -1473,16 +1473,26 @@
   <script src="timmytext-data.js"></script>
   <script src="timmytext.js"></script>
   <script>
+    // Prevent the browser from auto-restoring a previous scroll position,
+    // which was leaking through underneath the fixed intro overlay and
+    // making the page appear to open mid-page (e.g. under Timmytext).
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+
     const intro = document.getElementById("intro");
     const enterButton = document.getElementById("enterStudio");
 
     if (sessionStorage.getItem("sheetGhostEntered") === "yes") {
       intro.classList.add("hidden");
+      window.scrollTo(0, 0);
     }
 
     enterButton.addEventListener("click", () => {
       sessionStorage.setItem("sheetGhostEntered", "yes");
       intro.classList.add("hidden");
+      window.scrollTo(0, 0);
     });
 
     const scenes = {
