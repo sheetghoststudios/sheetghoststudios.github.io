@@ -914,6 +914,62 @@
       font-size: .66rem;
     }
 
+    .featured-spotlight {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-announce-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 10px 4px;
+      border-radius: 12px;
+      background: linear-gradient(120deg, #e0b86e, #b98adf 55%, #6fd4c0);
+      background-size: 220% 220%;
+      animation: announceShimmer 4.5s ease-in-out infinite, announceFloat 2.6s ease-in-out infinite;
+      box-shadow: 0 8px 22px rgba(185, 138, 223, .35);
+    }
+
+    .feature-announce-bar .feature-announce-text {
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #0c1418;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    .feature-announce-bar .feature-announce-arrow {
+      font-size: 1.05rem;
+      color: #0c1418;
+      line-height: 1;
+      animation: announceArrow 1.1s ease-in-out infinite;
+    }
+
+    @keyframes announceShimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes announceFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    @keyframes announceArrow {
+      0%, 100% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(4px); opacity: .6; }
+    }
+
+    .featured-card-spotlight {
+      border-color: rgba(224, 184, 110, .55);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .28), 0 0 0 1px rgba(224, 184, 110, .18);
+    }
+
     @media (max-width: 1000px) {
       .featured-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
@@ -1028,14 +1084,20 @@
       </div>
 
       <div class="featured-grid">
-        <article class="featured-card">
-          <div class="featured-card-media" style="background-image:url('assets/games/greenhouse-gameplay.jpg')"></div>
-          <div class="featured-card-body">
-            <div class="featured-badge">Early Access · Full Game</div>
-            <h3>Moonlit Greenhouse</h3>
-            <a class="download-button" href="https://sheetghost-official.itch.io/moonlit-greenhouse" target="_blank" rel="noopener noreferrer">Get on itch.io</a>
+        <div class="featured-spotlight">
+          <div class="feature-announce-bar">
+            <span class="feature-announce-text">✦ Our First Feature Full Release · Get It Here ✦</span>
+            <div class="feature-announce-arrow" aria-hidden="true">▼</div>
           </div>
-        </article>
+          <article class="featured-card featured-card-spotlight">
+            <div class="featured-card-media" style="background-image:url('assets/games/greenhouse-gameplay.jpg')"></div>
+            <div class="featured-card-body">
+              <div class="featured-badge">v1.0.3 · Full Release · Out Now!</div>
+              <h3>Moonlit Greenhouse</h3>
+              <a class="download-button" href="https://sheetghost-official.itch.io/moonlit-greenhouse-v103-full-release" target="_blank" rel="noopener noreferrer">Get on itch.io</a>
+            </div>
+          </article>
+        </div>
 
         <article class="featured-card">
           <div class="featured-card-media" style="background-image:url('assets/games/midnight-inn-night.jpg')"></div>
@@ -1139,11 +1201,11 @@
             </div>
           </div>
           <div class="game-card-body">
-            <div class="status">Early Access Available Now</div>
+            <div class="status">v1.0.3 Full Release — Out Now!</div>
             <h3>Moonlit Greenhouse</h3>
             <p>Grow magical plants beneath the moonlight. Discover 20+ plant species, combine 5+ traits, unlock multiple upgrade tiers, and uncover memories hidden inside a cozy inherited greenhouse.</p>
             <div class="game-download-row">
-              <a class="download-button" href="https://sheetghost-official.itch.io/moonlit-greenhouse" target="_blank" rel="noopener noreferrer">Download on itch.io</a>
+              <a class="download-button" href="https://sheetghost-official.itch.io/moonlit-greenhouse-v103-full-release" target="_blank" rel="noopener noreferrer">Download on itch.io</a>
               <span class="small" style="margin-top:0">Cozy gardening game</span>
             </div>
           </div>
@@ -1296,8 +1358,8 @@
               plants, more traits, and more cozy surprises.
             </p>
             <div class="progress-row">
-              <div class="progress-track"><div class="progress-fill" style="--progress:80%"></div></div>
-              <div class="progress-number">80%</div>
+              <div class="progress-track"><div class="progress-fill" style="--progress:90%"></div></div>
+              <div class="progress-number">90%</div>
             </div>
           </div>
         </article>
@@ -1409,10 +1471,25 @@
 
       <article class="journal-card">
         <div class="roadmap-date">July 2026</div>
+        <h3>Moonlit Greenhouse update v1.0.3 — Full Release</h3>
+        <p>
+          Moonlit Greenhouse has been updated to
+          <a href="https://sheetghost-official.itch.io/moonlit-greenhouse-v103-full-release" target="_blank" rel="noopener noreferrer">v1.0.3, the full release</a>,
+          now live on itch.io. Added the Night Market, added the town map, added the
+          Drying Apothecary, added 2 new secret rooms, added new artwork to the
+          artwork book in the study, polished and tweaked game fixes, added Mara's
+          Trading Inn to the town map alongside the Night Market. Updated QOL fixes.
+          Added new town happiness and elixirs for level 2 greenhouse. Updated the
+          progression log and ending to match the new game flow.
+        </p>
+      </article>
+
+      <article class="journal-card">
+        <div class="roadmap-date">July 2026</div>
         <h3>Uploaded full game: Moonlit Greenhouse (early access)</h3>
         <p>
           The full early access build of Moonlit Greenhouse is live now on
-          <a href="https://sheetghost-official.itch.io/moonlit-greenhouse" target="_blank" rel="noopener noreferrer">itch.io</a>.
+          <a href="https://sheetghost-official.itch.io/moonlit-greenhouse-v103-full-release" target="_blank" rel="noopener noreferrer">itch.io</a>.
         </p>
       </article>
 
